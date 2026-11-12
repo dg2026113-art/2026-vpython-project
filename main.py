@@ -5,10 +5,21 @@ pillar = box(size=vec(0.1,2.5,0.2),pos=vec(3.35,0.3,0),color = vec(0,51/255,25/2
 backboard = box(size = vec(0.1,0.8,1.2), pos = vec(3.35,1.8,0),color = color.blue)
 hoop = compound([rim,pillar,backboard])
 s = sphere(size=vec(0.25,0.25,0.25),pos=vec(-1.2,1,0))
+g = vec(0,-9.8,0)
+s.v= vec(5,5,0)
+dt = 0.01
+
 while True:
     rate(30)
     k = keysdown()
-    if 'd' in k:
-        s.pos.x = s.pos.x+0.1
+    if 's' in k:
+        s.pos.y = s.pos.y-0.1
     if 'w' in k:
         s.pos.y = s.pos.y+0.1
+    if ' ' in k :
+        while s.pos.y>=-0.6:
+            rate (80)
+            s.pos = s.pos+s.v*dt
+            s.v = s.v+g*dt
+            
+        
